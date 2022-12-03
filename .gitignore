@@ -21,3 +21,209 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+    // ZADANIE 1
+        boolean czyPada = false;
+        boolean czySwieciSlonce = true;
+
+        plucha - gdy pada i nie świeci słońce
+        tęcza - gdy pada i świeci słońce
+        słonecznie - gdy świeci słońce i nie pada
+        pochmurno - gdy nie świeci słońce i nie pada
+
+        if (czyPada == true && czySwieciSlonce == false) {
+            System.out.println("Plucha");
+        }
+        else if (czyPada == true && czySwieciSlonce == true) {
+            System.out.println("Tęcza");
+        }
+        else if (czyPada == false && czySwieciSlonce == true) {
+            System.out.println("Słonecznie");
+        }
+        else if (czyPada == false && czySwieciSlonce == false) {
+            System.out.println("Pochmurno");
+        }
+
+        // ZADANIE 4
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj wartość a");
+        String a = scanner.next();
+        System.out.println("Podaj wartość b");
+        String b = scanner.next();
+        System.out.println("a = "+ a + "\nb = "+ b);
+
+        int x = Integer.parseInt(a);
+        int y = Integer.parseInt(b);
+
+        System.out.println("Wpisz polecenie do wykoananie opecacji.\n"+
+                "●ADD - do dodawania\n" +
+                "●SUB - do odejmowania\n" +
+                "●DIV - do dzielenia\n" +
+                "●MUL - do mnożenia");
+
+        String polecenie = scanner.next();
+
+        switch (polecenie.toLowerCase()){
+            case "add":
+                System.out.println("Wynik: "+ add(x,y));
+                break;
+            case "sub":
+                System.out.println("Wynik = "+ sub(x,y));
+                break;
+            case "div":
+                System.out.println("Wynik = "+ div(x,y));
+                break;
+            case "mul":
+                System.out.println("Wynik = "+ mul(x,y));
+                break;
+            default:
+                System.out.println("Brak takiej operacji");
+        }
+
+        // ZADANIE 5
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj wartość a");
+        String a = scanner.next();
+        System.out.println("Podaj wartość b");
+        String b = scanner.next();
+        System.out.println("a = "+ a + "\nb = "+ b);
+
+        int c = absoluteValue(Integer.parseInt(a));
+        int d = absoluteValue(Integer.parseInt(b));
+
+        System.out.println("Wpisz polecenie do wykoananie opecacji.\n"+
+                "●ADD - do dodawania\n" +
+                "●SUB - do odejmowania\n" +
+                "●DIV - do dzielenia\n" +
+                "●MUL - do mnożenia");
+
+        String polecenie = scanner.next();
+
+        switch (polecenie.toLowerCase()){
+            case "add":
+                System.out.println("Wynik: "+ add(c,d));
+                break;
+            case "sub":
+                System.out.println("Wynik = "+ sub(c,d));
+                break;
+            case "div":
+                System.out.println("Wynik = "+ div(c,d));
+                break;
+            case "mul":
+                System.out.println("Wynik = "+ mul(c,d));
+                break;
+            default:
+                System.out.println("Brak takiej operacji");
+        }
+
+
+        // ZADANIE 6
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wprowadź 2 liczby rzeczywiste i naciśnij ENTER po każdej z nich:");
+        double a = scanner.nextDouble();
+        double b = scanner.nextDouble();
+
+        if (a > b) {
+            double temp;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        double zakres = b - a;
+        System.out.println("Wybrany przedział: ["+ a + ", " + b + "]");
+        System.out.println("Wartości generowane losowo:");
+
+        double liczba1 = (Math.random() * zakres) + a;
+        double liczba2 = (Math.random() * zakres) + a;
+        double liczba3 = (Math.random() * zakres) + a;
+
+        System.out.println(Math.round(liczba1 * 100.0)/100.0);
+        System.out.println(Math.round(liczba2 * 100.0)/100.0);
+        System.out.println(Math.round(liczba3 * 100.0)/100.0);
+
+        double najm = 0;
+        double najw = 0;
+        double srednia = 0;
+
+        if (liczba1 > liczba2) {
+            najw = liczba1;
+            najm = liczba2;
+            if (liczba3 > najw) {
+                srednia = najw;
+                najw = liczba3;
+            } else if (liczba3 < najm) {
+                srednia = najm;
+                najm = liczba3;
+            } else if (najm < liczba3 && liczba3 < najw) {
+                srednia = liczba3;
+            }
+        }
+        else if (liczba1 < liczba2) {
+            najw = liczba2;
+            najm = liczba1;
+            if (liczba3 > najw) {
+                srednia = najw;
+                najw = liczba3;
+            } else if (liczba3 < najm) {
+                srednia = najm;
+                najm = liczba3;
+            } else if (najm < liczba3 && liczba3 < najw) {
+                srednia = liczba3;
+            }
+
+        }
+        // Ola, zastanów się, czy gra warta świeczki, w razie cze usuń poniższy else if, fightng!
+        else if (liczba1 == liczba2){
+            najm = liczba1;
+            najw = liczba2;
+            if (liczba3 > najw){
+                srednia = najw;
+                najw = liczba3;
+            }
+            else {
+                srednia = najm;
+                najm = liczba3;
+            }
+        }
+        System.out.println("Gdzie " + Math.round(najm * 100.0)/100.0 + " < " + Math.round(srednia * 100.0)/100.0 + " < " + Math.round(najw * 100.0)/100.0);
+
+
+
+
+
+        // Zadanie 8
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Witamy w kantorze!");
+        System.out.println("Wybierz walutę:\n 1 - PLN \n 2 - JPY");
+
+        int waluta = scanner.nextInt();
+
+        System.out.println("Wprowadź kwotę:");
+        double kwota = scanner.nextDouble();
+
+        // w dniu robienia zadania 1 ¥ = 0,033 zł; 1 zł = 30,27 ¥
+
+        double pol;
+        double jpn;
+
+        if (waluta == 1){
+            jpn = kwota * 30.27;
+            System.out.println(kwota + " zł => " + jpn + " ¥");
+        }
+        else if (waluta == 2){
+            pol = kwota * 0.0033;
+            System.out.println(kwota + " ¥ => " + pol + " zł");
+        }
+
+    }
+}
